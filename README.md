@@ -7,7 +7,7 @@ Vecset: a vector with set-like lookup.
 Leiningen dependency information:
 
 ```clojure
-[com.joshuadavey/vecset "0.1.0-SNAPSHOT"]
+[com.joshuadavey/vecset "0.1.0"]
 ```
 
 ## Usage
