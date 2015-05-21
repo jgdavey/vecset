@@ -13,7 +13,6 @@
 (bootlaces! +version+)
 
 (task-options!
- repl {:init-ns 'user}
  pom  {:project     'com.joshuadavey/vecset
        :version     +version+
        :description "Vecset: a vector with set-like lookup."
@@ -22,6 +21,8 @@
        :license     {"Eclipse Public License" "http://www.eclipse.org/legal/epl-v10.html"}})
 
 (deftask dev []
+  (task-options!
+    repl {:init-ns 'user})
   (set-env! :dependencies '[[criterium                   "0.4.3"]
                             [org.clojure/tools.namespace "0.2.9"]
                             [org.clojure/data.avl        "0.0.12"]])
