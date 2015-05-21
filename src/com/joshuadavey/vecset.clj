@@ -9,6 +9,8 @@
              Indexed
              IFn]))
 
+(declare ->Vecset)
+
 (deftype Vecset [^IPersistentVector v
                  ^IPersistentSet s
                  ^IPersistentMap _meta]
@@ -53,10 +55,11 @@
 
   The set serves as a simple equality index for the data in the
   vector. Duplicates are allowed in the vector."
-  ([] (Vecset. [] #{} nil))
+  ([] (->Vecset [] #{} nil))
   ([coll]
-   (Vecset. (vec coll) (set coll) (meta coll))))
+   (->Vecset (vec coll) (set coll) (meta coll))))
 
-(in-ns 'clojure.core)
-(defmethod print-method com.joshuadavey.vecset.Vecset [^com.joshuadavey.vecset.Vecset r, ^java.io.Writer w]
-  (print-method (.v r) w))
+(defmethod print-method Vecset [^Vecset r, ^java.io.Writer w]
+  (#'clojure.core/print-meta r w)
+  (.write w "#vecset/vecset ")
+  (print-method (with-meta (.v r) nil) w))

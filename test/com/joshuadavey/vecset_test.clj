@@ -1,6 +1,7 @@
 (ns com.joshuadavey.vecset-test
   (:require [clojure.test :refer :all]
-            [com.joshuadavey.vecset :refer :all]))
+            [com.joshuadavey.vecset :refer :all])
+  (:import [com.joshuadavey.vecset Vecset]))
 
 (set! *warn-on-reflection* true)
 
@@ -47,3 +48,12 @@
 (deftest vecset-is-peekable
   (let [vecs (vecset)]
     (is (= 4 (peek (into vecs [1 2 3 4]))))))
+
+(deftest printing-and-reading
+  (let [s (vecset [1 2 9 8 7 5])]
+    (is (= "#vecset/vecset [1 2 9 8 7 5]"
+           (pr-str s)))
+    (let [o (read-string (pr-str s))]
+      (is (= Vecset (type o)))
+      (is (= '(1 2 9 8 7 5)
+             (seq o))))))
