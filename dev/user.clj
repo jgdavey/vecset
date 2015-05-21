@@ -50,7 +50,7 @@
     (reduce conj #{} (range 10000)))
   (println "\nvecset")
   (crit/bench
-    (reduce conj (vecset) ( range 10000)))
+    (reduce conj (vecset) (range 10000)))
   (println "\navl/sorted-set")
   (crit/bench
     (reduce conj (avl/sorted-set) (range 10000))))
