@@ -39,3 +39,11 @@
   (let [vecs (vecset (range 1024))]
     (is (= 1 (nth vecs 1)))
     (is (= 999 (nth vecs 999)))))
+
+(deftest vecset-can-have-meta
+  (let [vecs (with-meta (vecset) {:foo "bar"})]
+    (is (= {:foo "bar"} (meta vecs)))))
+
+(deftest vecset-is-peekable
+  (let [vecs (vecset)]
+    (is (= 4 (peek (into vecs [1 2 3 4]))))))
