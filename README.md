@@ -2,12 +2,14 @@
 
 Vecset: a vector with set-like lookup.
 
+![Clojars Project](http://clojars.org/com.joshuadavey/vecset/latest-version.svg)
+
 ## Dependency information
 
 Leiningen dependency information:
 
 ```clojure
-[com.joshuadavey/vecset "0.1.0"]
+[com.joshuadavey/vecset "X.Y.Z"]
 ```
 
 ## Usage
