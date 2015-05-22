@@ -1,24 +1,21 @@
 (ns com.joshuadavey.vecset
   (:import [clojure.lang
-             ISeq
-             IPersistentVector
-             IPersistentSet
-             IPersistentMap
-             IPersistentStack
+             Associative
              IObj
+             IPersistentCollection
+             IPersistentStack
+             ISeq
              Indexed
              IFn]))
 
 (declare ->Vecset)
 
-(deftype Vecset [^IPersistentVector v
-                 ^IPersistentSet s
-                 ^IPersistentMap _meta]
-  ISeq
-  (seq [this] (seq v))
-  (first [this] (.first v))
-  (more [this] (.more v))
-  (next [this] (.next v))
+(deftype Vecset [^clojure.lang.IPersistentVector v
+                 ^clojure.lang.IPersistentSet s
+                 ^clojure.lang.IPersistentMap _meta]
+
+  IPersistentCollection
+  (seq [this] (.seq v))
   (empty [this] (Vecset. [] #{} _meta))
   (cons [this obj]
     (Vecset. (conj v obj) (conj s obj) _meta))
@@ -40,10 +37,10 @@
   (pop [this] (throw (UnsupportedOperationException.)))
   (peek [this] (.peek v))
 
-  IPersistentSet
-  (disjoin [this obj] (throw (UnsupportedOperationException.)))
-  (get [this obj] (.get s obj))
-  (contains [this obj] (.contains s obj)))
+  Associative
+  (assoc [this key val] (throw (UnsupportedOperationException.)))
+  (entryAt [this obj] (throw (UnsupportedOperationException.)))
+  (containsKey [this obj] (.contains s obj)))
 
 (defn vecset
   "Given an ordered collection, returns an Vecset (collection
@@ -59,7 +56,7 @@
   ([coll]
    (->Vecset (vec coll) (set coll) (meta coll))))
 
-(defmethod print-method Vecset [^Vecset r, ^java.io.Writer w]
+(defmethod print-method com.joshuadavey.vecset.Vecset [^com.joshuadavey.vecset.Vecset r, ^java.io.Writer w]
   (#'clojure.core/print-meta r w)
   (.write w "#vecset/vecset ")
   (print-method (with-meta (.v r) nil) w))
