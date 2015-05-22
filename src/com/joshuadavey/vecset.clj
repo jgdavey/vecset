@@ -1,6 +1,7 @@
 (ns com.joshuadavey.vecset
   (:import [clojure.lang
              Associative
+             Sequential
              IObj
              IPersistentCollection
              IPersistentStack
@@ -13,7 +14,7 @@
 (deftype Vecset [^clojure.lang.IPersistentVector v
                  ^clojure.lang.IPersistentSet s
                  ^clojure.lang.IPersistentMap _meta]
-
+  Sequential
   IPersistentCollection
   (seq [this] (.seq v))
   (empty [this] (Vecset. [] #{} _meta))

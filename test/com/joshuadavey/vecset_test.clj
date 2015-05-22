@@ -49,6 +49,10 @@
   (let [vecs (vecset)]
     (is (= 4 (peek (into vecs [1 2 3 4]))))))
 
+(deftest vecset-is-sequential
+  (let [vecs (vecset)]
+    (is (sequential? vecs))))
+
 (deftest printing-and-reading
   (let [s (vecset [1 2 9 8 7 5])]
     (is (= "#vecset/vecset [1 2 9 8 7 5]"
