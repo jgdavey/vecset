@@ -6,7 +6,7 @@
                   [adzerk/bootlaces     "0.1.11" :scope "test"]])
 
 (require '[adzerk.bootlaces :refer :all])
-(require '[adzerk.boot-test :refer :all])
+(require '[adzerk.boot-test :as bt])
 
 (def +version+ "0.2.0")
 
@@ -23,8 +23,12 @@
 (deftask dev []
   (task-options!
     repl {:init-ns 'user})
-  (set-env! :dependencies '[[criterium                   "0.4.3"]
-                            [org.clojure/tools.namespace "0.2.10"]
-                            [org.clojure/data.avl        "0.0.12"]])
-  (set-env! :source-paths #{"dev" "test"})
+  (set-env! :dependencies #(into % '[[criterium "0.4.3" :exclusions [org.clojure/clojure]]
+                                     [org.clojure/tools.namespace "0.2.10"]
+                                     [org.clojure/data.avl "0.0.12"]]))
+  (set-env! :source-paths #(into % #{"dev" "test"}))
   identity)
+
+(deftask test []
+  (set-env! :source-paths #(into % #{"test"}))
+  (bt/test))
