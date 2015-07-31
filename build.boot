@@ -2,6 +2,7 @@
   :source-paths   #{"src"}
   :dependencies '[[org.clojure/clojure  "1.6.0" :scope "provided"]
                   [boot/core            "2.1.2" :scope "test"]
+                  [org.clojure/test.check "0.7.0" :scope "test"]
                   [adzerk/boot-test     "1.0.4" :scope "test"]
                   [adzerk/bootlaces     "0.1.11" :scope "test"]])
 
@@ -11,6 +12,7 @@
 (def +version+ "0.2.0")
 
 (bootlaces! +version+)
+(load-data-readers!)
 
 (task-options!
  pom  {:project     'com.joshuadavey/vecset

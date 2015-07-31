@@ -14,6 +14,23 @@
 (deftype Vecset [^clojure.lang.IPersistentVector v
                  ^clojure.lang.IPersistentSet s
                  ^clojure.lang.IPersistentMap _meta]
+  java.util.Collection
+  (add [this e] (.add v e))
+  (addAll [this c] (.addAll v c))
+  (clear [this] (.clear v))
+  (contains [this o] (.contains v o))
+  (containsAll [this c] (.containsAll v c))
+  (equals [this o] (.equals v o))
+  (hashCode [this] (.hashCode v))
+  (isEmpty [this] (.isEmpty v))
+  (iterator [this] (.iterator v))
+  (remove [this o] (.remove v o))
+  (removeAll [this c] (.removeAll v c))
+  (retainAll [this c] (.retainAll v c))
+  (size [this] (.size v))
+  (toArray [this] (.toArray v))
+  (toArray [this a] (.toArray v a))
+
   Sequential
   IPersistentCollection
   (seq [this] (.seq v))
@@ -41,7 +58,8 @@
   Associative
   (assoc [this key val] (throw (UnsupportedOperationException.)))
   (entryAt [this obj] (throw (UnsupportedOperationException.)))
-  (containsKey [this obj] (.contains s obj)))
+  (containsKey [this obj] (.contains s obj))
+  )
 
 (defn vecset
   "Given an ordered collection, returns an Vecset (collection
