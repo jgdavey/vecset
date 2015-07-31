@@ -1,7 +1,7 @@
 (set-env!
   :source-paths   #{"src"}
   :dependencies '[[org.clojure/clojure  "1.6.0" :scope "provided"]
-                  [boot/core            "2.0.0" :scope "test"]
+                  [boot/core            "2.1.2" :scope "test"]
                   [adzerk/boot-test     "1.0.4" :scope "test"]
                   [adzerk/bootlaces     "0.1.11" :scope "test"]])
 
@@ -24,7 +24,7 @@
   (task-options!
     repl {:init-ns 'user})
   (set-env! :dependencies '[[criterium                   "0.4.3"]
-                            [org.clojure/tools.namespace "0.2.9"]
+                            [org.clojure/tools.namespace "0.2.10"]
                             [org.clojure/data.avl        "0.0.12"]])
   (set-env! :source-paths #{"dev" "test"})
   identity)
