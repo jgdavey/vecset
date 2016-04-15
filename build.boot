@@ -1,10 +1,10 @@
 (set-env!
   :source-paths   #{"src"}
-  :dependencies '[[org.clojure/clojure  "1.6.0" :scope "provided"]
-                  [boot/core            "2.1.2" :scope "test"]
-                  [org.clojure/test.check "0.7.0" :scope "test"]
-                  [adzerk/boot-test     "1.0.4" :scope "test"]
-                  [adzerk/bootlaces     "0.1.11" :scope "test"]])
+  :dependencies '[[org.clojure/clojure  "1.7.0" :scope "provided"]
+                  [boot/core            "2.5.5" :scope "test"]
+                  [org.clojure/test.check "0.9.0" :scope "test"]
+                  [adzerk/boot-test     "1.1.1" :scope "test"]
+                  [adzerk/bootlaces     "0.1.13" :scope "test"]])
 
 (require '[adzerk.bootlaces :refer :all])
 (require '[adzerk.boot-test :as bt])
@@ -25,9 +25,9 @@
 (deftask dev []
   (task-options!
     repl {:init-ns 'user})
-  (set-env! :dependencies #(into % '[[criterium "0.4.3" :exclusions [org.clojure/clojure]]
-                                     [org.clojure/tools.namespace "0.2.10"]
-                                     [org.clojure/data.avl "0.0.12"]]))
+  (set-env! :dependencies #(into % '[[criterium "0.4.4" :exclusions [org.clojure/clojure]]
+                                     [org.clojure/tools.namespace "0.2.11"]
+                                     [org.clojure/data.avl "0.0.13"]]))
   (set-env! :source-paths #(into % #{"dev" "test"}))
   identity)
 
