@@ -15,6 +15,7 @@
 (load-data-readers!)
 
 (task-options!
+ target {:dir "target"}
  pom  {:project     'com.joshuadavey/vecset
        :version     +version+
        :description "Vecset: a vector with set-like lookup."
